@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practice_project/constants.dart';
 import 'package:flutter_practice_project/models/product.dart';
+import 'package:kpostal/kpostal.dart';
 
 class ItemCheckoutPage extends StatefulWidget {
   const ItemCheckoutPage({super.key});
@@ -166,7 +167,9 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: buyerNameController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "주문자명"),
+          border: OutlineInputBorder(),
+          hintText: "주문자명",
+        ),
       ),
     );
   }
@@ -177,7 +180,9 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: buyerEmailController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "주문자 이메일"),
+          border: OutlineInputBorder(),
+          hintText: "주문자 이메일",
+        ),
       ),
     );
   }
@@ -188,7 +193,9 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: buyerPhoneController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "주문자 휴대전화"),
+          border: OutlineInputBorder(),
+          hintText: "주문자 휴대전화",
+        ),
       ),
     );
   }
@@ -199,7 +206,9 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: receiverNameController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "받는 사람 이름"),
+          border: OutlineInputBorder(),
+          hintText: "받는 사람 이름",
+        ),
       ),
     );
   }
@@ -210,7 +219,9 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: receiverPhoneController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "받는 사람 휴대 전화"),
+          border: OutlineInputBorder(),
+          hintText: "받는 사람 휴대 전화",
+        ),
       ),
     );
   }
@@ -218,10 +229,42 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
   Widget receiverZipTextField() {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: TextFormField(
-        controller: receiverZipController,
-        decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "우편번호"),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextFormField(
+              readOnly: true,
+              controller: receiverZipController,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "우편번호",
+              ),
+            ),
+          ),
+          const SizedBox(width: 15),
+          FilledButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return KpostalView(
+                    callback: (Kpostal result) {
+                      receiverZipController.text = result.postCode;
+                      receiverAddress1Controller.text = result.address;
+                    },
+                  );
+                },
+              ));
+            },
+            style: FilledButton.styleFrom(
+                shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            )),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 22),
+              child: Text("우편 번호 찾기"),
+            ),
+          )
+        ],
       ),
     );
   }
@@ -230,9 +273,12 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(
+        readOnly: true,
         controller: receiverAddress1Controller,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "기본 주소"),
+          border: OutlineInputBorder(),
+          hintText: "기본 주소",
+        ),
       ),
     );
   }
@@ -243,7 +289,9 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: receiverAddress2Controller,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "상세 주소"),
+          border: OutlineInputBorder(),
+          hintText: "상세 주소",
+        ),
       ),
     );
   }
@@ -254,7 +302,10 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: userPwdController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "비회원 주문조회 비밀번호"),
+          border: OutlineInputBorder(),
+          hintText: "비회원 주문조회 비밀번호",
+        ),
+        obscureText: true,
       ),
     );
   }
@@ -265,7 +316,10 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: userConfirmPwdController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "비회원 주문조회 비밀번호 확인"),
+          border: OutlineInputBorder(),
+          hintText: "비회원 주문조회 비밀번호 확인",
+        ),
+        obscureText: true,
       ),
     );
   }
@@ -276,7 +330,9 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: cardNoController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "카드번호"),
+          border: OutlineInputBorder(),
+          hintText: "카드번호",
+        ),
       ),
     );
   }
@@ -286,8 +342,11 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       padding: const EdgeInsets.all(8),
       child: TextFormField(
         controller: cardAuthController,
+        maxLength: 10,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "카드명의자 주민번호 앞자리"),
+          border: OutlineInputBorder(),
+          hintText: "카드명의자 주민번호 앞자리",
+        ),
       ),
     );
   }
@@ -298,7 +357,9 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: cardExpiredDateController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "카드 만료일"),
+          border: OutlineInputBorder(),
+          hintText: "카드 만료일",
+        ),
       ),
     );
   }
@@ -309,7 +370,11 @@ class _ItemCheckoutPageState extends State<ItemCheckoutPage> {
       child: TextFormField(
         controller: cardPwdTwoDigitsController,
         decoration: const InputDecoration(
-            border: OutlineInputBorder(), hintText: "카드 비밀번호 앞 2자리"),
+          border: OutlineInputBorder(),
+          hintText: "카드 비밀번호 앞 2자리",
+        ),
+        maxLength: 2,
+        obscureText: true,
       ),
     );
   }

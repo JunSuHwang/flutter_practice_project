@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   cached_network_image:
   intl:
+  kpostal:
 
 dev_dependencies:
   flutter_test:
