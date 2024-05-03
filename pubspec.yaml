@@ -12,6 +12,7 @@ dependencies:
   cached_network_image:
   intl:
   kpostal:
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

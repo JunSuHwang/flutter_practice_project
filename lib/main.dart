@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_practice_project/constants.dart';
 import 'package:flutter_practice_project/item_list_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  initializeSharedPreferences();
   runApp(const MyApp());
 }
 
