@@ -15,6 +15,7 @@ dependencies:
   shared_preferences:
   firebase_core:
   cloud_firestore:
+  crypto:
 
 dev_dependencies:
   flutter_test:

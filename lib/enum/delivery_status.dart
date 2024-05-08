@@ -1,6 +1,6 @@
 enum DeliveryStatus {
   //! 상태 열거
-  wating('wating', '배송대기'),
+  waiting('waiting', '배송대기'),
   completed('delivering', '배송중'),
   cancelled('delivered', '배송완료');
 
@@ -16,6 +16,6 @@ enum DeliveryStatus {
   //! 상태 이름 변환
   factory DeliveryStatus.getStatusName(String status) {
     return DeliveryStatus.values.firstWhere((value) => value.status == status,
-        orElse: () => DeliveryStatus.wating);
+        orElse: () => DeliveryStatus.waiting);
   }
 }

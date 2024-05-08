@@ -16,20 +16,20 @@ class MyOrderListPage extends StatefulWidget {
 class _MyOrderListPageState extends State<MyOrderListPage> {
   List<Product> productList = [
     Product(
-        productNo: 1,
+        //productNo: 1,
         productName: "노트북(Laptop)",
         productImageUrl: "https://picsum.photos/id/1/300/300",
         price: 600000),
     Product(
-        productNo: 4,
+        //productNo: 4,
         productName: "스마트폰(Phone)",
         productImageUrl: "https://picsum.photos/id/20/300/300",
         price: 50000),
   ];
 
-  List<Order> orderList = [
-    Order(
-      orderId: 1,
+  List<ProductOrder> orderList = [
+    ProductOrder(
+      //orderId: 1,
       productNo: 1,
       orderDate: "2023-11-24",
       orderNo: "20231114-123456123",
@@ -38,8 +38,8 @@ class _MyOrderListPageState extends State<MyOrderListPage> {
       paymentStatus: "completed",
       deliveryStatus: "delivering",
     ),
-    Order(
-      orderId: 2,
+    ProductOrder(
+      //orderId: 2,
       productNo: 4,
       orderDate: "2023-11-24",
       orderNo: "20231114-141020312",
